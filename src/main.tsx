@@ -37,7 +37,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         {pages.map((page) => (
           <Route
             key={page.file}
-            path={page.path}
+            path={`/lab/${page.path}`}
             element={<page.component />}
           />
         ))}
