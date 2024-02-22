@@ -27,7 +27,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <BrowserRouter>
       <Routes>
         <Route
-          path="/"
+          path="/lab/"
           element={
             <>
               <Cover pages={pages} />
