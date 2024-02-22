@@ -17,9 +17,7 @@ const Cover = ({ pages }: { pages: PageDef[] }) => {
     <Stack className="cover">
       <LabLogo />
       <h1>The Lab</h1>
-      <h3>{`There ${p ? "are" : "is"} ${pages.length} project${
-        p ? "s" : ""
-      } in the lab`}</h3>
+      <h3>{`There ${p ? "are" : "is"} ${pages.length} project${p ? "s" : ""} in the lab`}</h3>
       <div className="rollup">
         {pages.map((page, i) => (
           <li key={`${i}-${page.pathname}`}>

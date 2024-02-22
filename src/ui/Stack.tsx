@@ -1,10 +1,15 @@
+import { HTMLAttributes, PropsWithChildren } from "react";
 import "./Stack.css";
-import React, { HTMLAttributes, PropsWithChildren } from "react";
+import cx from "classix";
 
 type Props = PropsWithChildren<HTMLAttributes<HTMLDivElement>>;
 
-const Stack = ({ children }: Props) => {
-  return <div className="stack">{children}</div>;
+const Stack = ({ children, ...props }: Props) => {
+  return (
+    <div {...props} className={cx("stack", props.className)}>
+      {children}
+    </div>
+  );
 };
 
 export default Stack;

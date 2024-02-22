@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "bun-types": "^1.0.28",
+    "classix": "^2.1.36",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router": "^6.22.1",
