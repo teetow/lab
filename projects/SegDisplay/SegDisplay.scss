@@ -2,12 +2,6 @@
 @use "../style/theme";
 @use "../style/utils";
 
-@property --fill {
-  syntax: "<color>";
-  initial-value: #333;
-  inherits: true;
-}
-
 @property --fade {
   syntax: "<time>";
   initial-value: 0;
@@ -27,7 +21,6 @@ $bg: rgba(132, 117, 41, 0.378);
 }
 
 #{$cls} {
-  --fill: #{$bg};
   --fade: 0.08s;
   display: grid;
   grid-auto-flow: column;
@@ -38,12 +31,18 @@ $bg: rgba(132, 117, 41, 0.378);
 #{$digit} {
   display: block;
   width: 3rem;
+  color: theme.$color-brand-600;
+  fill: color-mix(in lab, currentColor 5%, white 5%);
+
+  @media screen and (prefers-color-scheme: light) {
+    color: color-mix(in lab, currentColor 70%, black 5%);
+  }
 
   @mixin segments($digit, $segments) {
     &.d-#{$digit} {
       @include utils.per-char($segments, "#{$p}") {
+        fill: color-mix(in srgb, currentColor 95%, white 5%);
         --fade: 0.01s;
-        --fill: #{$fg};
       }
     }
   }
@@ -61,13 +60,12 @@ $bg: rgba(132, 117, 41, 0.378);
 
   &.dot {
     #p#{$p} {
-      --fill: #{$fg};
+      fill: currentColor;
     }
   }
 }
 
 #{$p} {
-  fill: var(--fill);
   filter: url(#glow);
-  transition: --fill var(--fade) linear;
+  transition: color var(--fade) linear;
 }
