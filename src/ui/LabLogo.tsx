@@ -69,6 +69,7 @@ const LabLogo = () => {
 
       <use href="#flask" fill="#356" />
       <use href="#flask" fill="url(#topfade)" opacity={0.2} />
+
       <use href="#wave" fill="#fe3" mask="url(#mask)" />
       <use href="#wave" fill="url(#topfade)" mask="url(#mask)" opacity={0.2} />
 
@@ -83,7 +84,7 @@ const LabLogo = () => {
       </circle>
 
       <circle id="bubble" cx="77" cy="70" fill="#FFFF70">
-        <animate {...bp} begin="0.413s" dur="1.9s" attributeName="r" values="0;2;1;0;0;0;0" />
+        <animate {...bp} begin="0.413s" dur="1.9s" attributeName="r" values="0;4;1.5;0;0;0;0" />
         <animate {...bp} begin="0.413s" dur="1.9s" attributeName="cy" values="75;25" />
       </circle>
     </svg>
