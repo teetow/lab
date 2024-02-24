@@ -11,13 +11,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/react-syntax-highlighter": "^15.5.11",
     "bun-types": "^1.0.28",
     "classix": "^2.1.36",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-markdown": "^9.0.1",
     "react-router": "^6.22.1",
     "react-router-dom": "^6.22.1",
-    "sass": "^1.71.1"
+    "react-syntax-highlighter": "^15.5.0",
+    "rehype-highlight": "^7.0.0",
+    "sass": "^1.71.1",
+    "vite-plugin-markdown": "^2.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.55",

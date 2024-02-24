@@ -1,0 +1,46 @@
+.cover {
+  justify-items: center;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 2rem;
+}
+
+.covercard {
+  min-width: 0;
+  align-items: center;
+  aspect-ratio: 1;
+  background-color: #fff1;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  display: grid;
+  grid-template-areas: "thumb" "title" "desc";
+  grid-template-columns: 1fr;
+  grid-template-rows: 4fr 1fr 1fr;
+  justify-items: center;
+  padding: 1rem;
+  transition: transform 120ms, background-color 80ms;
+
+  &:hover {
+    transform: translate(0, -1px);
+    transition: transform 60ms, background-color 30ms;
+    background-color: color-mix(in srgb, currentcolor 10%, #fff 10%);
+    box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.16);
+  }
+}
+
+.covercard .thumb {
+  grid-area: thumb;
+  width: 100%;
+}
+
+.covercard .title {
+  grid-area: title;
+}
+
+.covercard .desc {
+  grid-area: desc;
+  align-self: end;
+}

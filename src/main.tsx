@@ -3,24 +3,68 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./index.css";
 import Cover from "./pages/Cover";
+import Project, { PageDef } from "./pages/Project";
 
-const projects = import.meta.glob<React.FC>(["../projects/**/index.tsx"], {
+const projectRoot = "../projects";
+
+const projects = import.meta.glob<React.FC>([`../projects/**/index.tsx`], {
+  eager: true,
+  import: "default",
+});
+
+const docs = import.meta.glob<string>([`../projects/**/docs.md`], {
+  eager: true,
+  import: "markdown",
+});
+
+const descs = import.meta.glob<string>([`../projects/**/desc.md`], {
+  eager: true,
+  import: "markdown",
+});
+
+const thumbs = import.meta.glob<string>([`../projects/**/thumb.png`], {
   eager: true,
   import: "default",
 });
 
 const mekTitle = (path: string) =>
-  path.split("../projects/")[1].replace("index.tsx", "").replace(/\/+$/, "");
+  path.split(projectRoot)[1].replace("index.tsx", "").replace(/\/+$/, "");
 
-const pages = Object.entries(projects).map(([file, Component]) => ({
-  name: Component.displayName || Component.name,
-  pathname: mekTitle(file),
-  file: file,
-  path: mekTitle(file)
-    .toLocaleLowerCase()
-    .replace(/[^a-zA-Z]/, "-"),
-  component: Component,
-}));
+const getDescFor = (file: string) => {
+  const descFile = file.split("/index.tsx")[0] + "/desc.md";
+  if (descFile in descs) {
+    return descs[descFile];
+  }
+};
+
+const getDocsFor = (file: string) => {
+  const docsFile = file.split("/index.tsx")[0] + "/docs.md";
+  if (docsFile in docs) {
+    return docs[docsFile];
+  }
+};
+
+const getThumbFor = (file: string) => {
+  const thumbFile = file.split("/index.tsx")[0] + "/thumb.png";
+  if (thumbFile in thumbs) {
+    return thumbs[thumbFile];
+  }
+};
+
+const pages = Object.entries(projects).map(
+  ([file, Component]): PageDef => ({
+    name: Component.displayName || Component.name,
+    pathname: mekTitle(file),
+    file: file,
+    path: mekTitle(file)
+      .toLocaleLowerCase()
+      .replace(/[^a-zA-Z]/, "-"),
+    component: Component,
+    desc: getDescFor(file),
+    docs: getDocsFor(file),
+    thumb: getThumbFor(file),
+  })
+);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -35,38 +79,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           }
         />
         {pages.map((page) => (
-          <Route
-            key={page.file}
-            path={`/lab/${page.path}`}
-            element={<page.component />}
-          />
+          <Route key={page.file} path={`/lab/${page.path}`} element={<Project page={page} />} />
         ))}
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
 );
-
-// import React from "react";
-// import { createRoot } from "react-dom/client";
-// import { RouterProvider, createBrowserRouter } from "react-router-dom";
-// import App from "./App.tsx";
-// import "./index.css";
-
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <App />,
-//     children: [
-//       {
-//         path: "/hello",
-//         element: <div>Hello</div>,
-//       },
-//     ],
-//   },
-// ]);
-
-// createRoot(document.getElementById("root") as HTMLElement).render(
-//   <React.StrictMode>
-//     <RouterProvider router={router} />
-//   </React.StrictMode>
-// );
