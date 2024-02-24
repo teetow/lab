@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import SegDisplay from "./SegDisplay.tsx";
+import { useState } from "react";
 import "./Demo.scss";
+import SegDisplay from "./SegDisplay.tsx";
 
 const Demo = () => {
   const [value, setValue] = useState("123");

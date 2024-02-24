@@ -1,5 +1,5 @@
 import cx from "classix";
-import React, { Children, ForwardedRef, PropsWithChildren, ReactNode, forwardRef } from "react";
+import { Children, ForwardedRef, PropsWithChildren, ReactNode, forwardRef } from "react";
 import { Digit, Template } from "./SegDigit.tsx";
 import "./SegDisplay.scss";
 

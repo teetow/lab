@@ -1,5 +1,5 @@
 import cx from "classix";
-import React, { CSSProperties, HTMLAttributes } from "react";
+import { CSSProperties, HTMLAttributes } from "react";
 
 const cls = "eg-segdigit";
 
