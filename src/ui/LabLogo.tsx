@@ -1,4 +1,4 @@
-import { SVGProps } from "react";
+import { HTMLAttributes, SVGProps } from "react";
 
 const defs = {
   topfade: (props: SVGProps<SVGLinearGradientElement>) => (
@@ -43,14 +43,13 @@ const bp = {
   repeatCount: "indefinite",
 } as SVGProps<SVGAnimateElement>;
 
-const LabLogo = () => {
+const LabLogo = (props: HTMLAttributes<SVGElement>) => {
   return (
     <svg
-      width="256"
-      height="256"
       viewBox="0 0 128 128"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
       <defs>
         {defs.topfade({ id: "topfade" })}

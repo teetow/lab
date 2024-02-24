@@ -1,31 +1,33 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./index.css";
+import "./index.scss";
 import Cover from "./pages/Cover";
 import Project, { PageDef } from "./pages/Project";
 
-const projectRoot = "../projects";
+const projectRoot = "./projects/";
 
-const projects = import.meta.glob<React.FC>([`../projects/**/index.tsx`], {
+const projects = import.meta.glob<React.FC>([`./projects/**/index.tsx`], {
   eager: true,
   import: "default",
 });
 
-const docs = import.meta.glob<string>([`../projects/**/docs.md`], {
+const docs = import.meta.glob<string>([`./projects/**/docs.md`], {
   eager: true,
   import: "markdown",
 });
 
-const descs = import.meta.glob<string>([`../projects/**/desc.md`], {
+const descs = import.meta.glob<string>([`./projects/**/desc.md`], {
   eager: true,
   import: "markdown",
 });
 
-const thumbs = import.meta.glob<string>([`../projects/**/thumb.png`], {
+const thumbs = import.meta.glob<string>([`./projects/**/thumb.png`], {
   eager: true,
   import: "default",
 });
+
+console.log(projects);
 
 const mekTitle = (path: string) =>
   path.split(projectRoot)[1].replace("index.tsx", "").replace(/\/+$/, "");

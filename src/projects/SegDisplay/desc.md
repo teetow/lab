@@ -1,1 +1,1 @@
-A 7-segment numeric display using SVG and SCSS
+7-segment display in SVG

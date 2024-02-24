@@ -1,6 +1,6 @@
 @use "sass:color";
-@use "../style/theme";
-@use "../style/utils";
+@use "../../style/theme";
+@use "../../style/utils";
 
 @property --fade {
   syntax: "<time>";

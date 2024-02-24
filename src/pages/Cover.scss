@@ -1,11 +1,33 @@
+@use "../style/theme";
+
 .cover {
+  align-items: center;
   justify-items: center;
+  column-gap: 0.5rem;
+  row-gap: 2rem;
+  grid-template-columns: auto auto 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "logo summary header menu"
+    "main main main main"
+    "footer footer footer footer";
+}
+
+.logo {
+  width: 5rem;
+}
+
+.summary {
+  justify-self: end;
+  display: grid;
+  justify-items: end;
 }
 
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-  gap: 2rem;
+  gap: 1rem;
+  grid-area: main;
 }
 
 .covercard {
@@ -13,19 +35,19 @@
   align-items: center;
   aspect-ratio: 1;
   background-color: #fff1;
-  border-radius: 10px;
+  border-radius: 2px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   display: grid;
-  grid-template-areas: "thumb" "title" "desc";
+  gap: 0.25rem;
+  grid-template-areas: "thumb" "desc";
   grid-template-columns: 1fr;
-  grid-template-rows: 4fr 1fr 1fr;
+  grid-template-rows: 4fr 1fr;
   justify-items: center;
-  padding: 1rem;
-  transition: transform 120ms, background-color 80ms;
+  padding: 0.25rem;
+  transition: background-color 80ms;
 
   &:hover {
-    transform: translate(0, -1px);
-    transition: transform 60ms, background-color 30ms;
+    transition: background-color 30ms;
     background-color: color-mix(in srgb, currentcolor 10%, #fff 10%);
     box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.16);
   }
@@ -37,10 +59,14 @@
 }
 
 .covercard .title {
-  grid-area: title;
+  align-self: end;
+  grid-area: thumb;
+  margin: 2rem 0.5rem;
+  position: absolute;
 }
 
 .covercard .desc {
+  color: color-mix(in lab, #{theme.$color-brand-600} 25%, #fff 50%);
   grid-area: desc;
   align-self: end;
 }
