@@ -20,12 +20,16 @@ type Props = {
 
 const Project = ({ page }: Props) => {
   return (
-    <>
-      <page.component />
-      <Markdown rehypePlugins={[rehypeHighlight]} className={"codeblock"}>
-        {page.docs}
-      </Markdown>
-    </>
+    <div className="project">
+      <div className="component">
+        <page.component />
+      </div>
+      <div className="desc">
+        <Markdown rehypePlugins={[rehypeHighlight]} className="markdown">
+          {page.docs}
+        </Markdown>
+      </div>
+    </div>
   );
 };
 

@@ -72,14 +72,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/lab/"
-          element={
-            <>
-              <Cover pages={pages} />
-            </>
-          }
-        />
+        <Route path="/lab/" element={<Cover pages={pages} />} />
         {pages.map((page) => (
           <Route key={page.file} path={`/lab/${page.path}`} element={<Project page={page} />} />
         ))}

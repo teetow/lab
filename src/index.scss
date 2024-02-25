@@ -6,7 +6,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: hsla(0, 0%, 100%, 0.04);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -26,15 +26,17 @@ a:hover {
 
 body {
   box-sizing: border-box;
-  margin: 0;
+  margin: 0 auto;
   min-height: 100vh;
+  max-width: 55em;
   padding: 2em;
+  background-color: #fff1;
+  
 }
 
 h1,
 h2,
-h3,
-p {
+h3 {
   font-weight: 300;
   font-size: var(--fz);
   line-height: var(--fz);

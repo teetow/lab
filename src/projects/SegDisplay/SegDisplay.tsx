@@ -1,5 +1,12 @@
 import cx from "classix";
-import { Children, ForwardedRef, PropsWithChildren, ReactNode, forwardRef } from "react";
+import {
+  Children,
+  ForwardedRef,
+  HTMLAttributes,
+  PropsWithChildren,
+  ReactNode,
+  forwardRef,
+} from "react";
 import { Digit, Template } from "./SegDigit.tsx";
 import "./SegDisplay.scss";
 
@@ -15,32 +22,34 @@ const isValidDigit = (digit: ReactNode): digit is ValidDigit => {
 };
 
 const cls = "eg-segdisplay";
-type Props = PropsWithChildren<{}>;
+type Props = PropsWithChildren<HTMLAttributes<HTMLDivElement>>;
 
-const SegDisplay = forwardRef(({ children }: Props, forwardedRef: ForwardedRef<HTMLDivElement>) => {
-  const digits: { char: string; withdot: boolean }[] = [];
+const SegDisplay = forwardRef(
+  ({ children, ...props }: Props, forwardedRef: ForwardedRef<HTMLDivElement>) => {
+    const digits: { char: string; withdot: boolean }[] = [];
 
-  Children.forEach(children, (childnode) => {
-    if (typeof childnode === "string") {
-      return childnode.split("").forEach((char, i, arr) => {
-        if (isValidDigit(char)) {
-          const withdot = arr[i + 1] == ".";
-          digits.push({ char, withdot });
-        }
-      });
-    } else return childnode;
-  });
+    Children.forEach(children, (childnode) => {
+      if (typeof childnode === "string") {
+        return childnode.split("").forEach((char, i, arr) => {
+          if (isValidDigit(char)) {
+            const withdot = arr[i + 1] == ".";
+            digits.push({ char, withdot });
+          }
+        });
+      } else return childnode;
+    });
 
-  return (
-    <>
-      <Template />
-      <div ref={forwardedRef} className={`${cls}`}>
-        {digits.map(({ char, withdot }, i) => (
-          <Digit key={i} className={cx(`d-${char}`, withdot && `dot`)} />
-        ))}
-      </div>
-    </>
-  );
-});
+    return (
+      <>
+        <Template />
+        <div ref={forwardedRef} className={cx(props.className, `${cls}`)}>
+          {digits.map(({ char, withdot }, i) => (
+            <Digit key={i} className={cx(`d-${char}`, withdot && `dot`)} />
+          ))}
+        </div>
+      </>
+    );
+  }
+);
 
 export default SegDisplay;

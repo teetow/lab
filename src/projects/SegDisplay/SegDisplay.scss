@@ -8,12 +8,15 @@
   inherits: true;
 }
 
+@property --fill {
+  syntax: "<color>";
+  initial-value: #000000;
+  inherits: true;
+}
+
 $cls: ".eg-segdisplay";
 $digit: ".eg-segdigit";
 $p: #{$digit}__path;
-
-$fg: theme.$color-brand-600;
-$bg: rgba(132, 117, 41, 0.378);
 
 #{$digit}__template {
   width: 0;
@@ -21,7 +24,7 @@ $bg: rgba(132, 117, 41, 0.378);
 }
 
 #{$cls} {
-  --fade: 0.08s;
+  --fade: 0.1s;
   display: grid;
   grid-auto-flow: column;
   align-items: center;
@@ -35,13 +38,13 @@ $bg: rgba(132, 117, 41, 0.378);
   fill: color-mix(in lab, currentColor 5%, white 5%);
 
   @media screen and (prefers-color-scheme: light) {
-    color: color-mix(in lab, currentColor 70%, black 5%);
+    color: #000a;
   }
 
   @mixin segments($digit, $segments) {
     &.d-#{$digit} {
       @include utils.per-char($segments, "#{$p}") {
-        fill: color-mix(in srgb, currentColor 95%, white 5%);
+        fill: currentColor;
         --fade: 0.01s;
       }
     }
@@ -67,5 +70,5 @@ $bg: rgba(132, 117, 41, 0.378);
 
 #{$p} {
   filter: url(#glow);
-  transition: color var(--fade) linear;
+  transition: fill var(--fade) linear;
 }
