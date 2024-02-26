@@ -37,8 +37,6 @@ type Props = {
 };
 
 const Gamepad = ({ axes, buttons, triggers }: Props) => {
-  // const buttonClasses = buttons.map((button) => `gp__button--${button}`).join(" ");
-
   const has = (button: ButtonName) => (buttons.includes(button) ? "is-active" : "");
   const c = (...args: string[]) =>
     cx("gp__symbol", typeof args === "string" ? args : args.join(" "));

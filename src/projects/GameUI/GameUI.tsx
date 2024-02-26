@@ -28,7 +28,6 @@ const GameUI = ({}: Props) => {
 
   useAnimationFrame(30, "gamepad", () => {
     const pad = navigator.getGamepads()[0];
-    // const pad = padRef.current;
 
     if (pad) {
       setAxes({
