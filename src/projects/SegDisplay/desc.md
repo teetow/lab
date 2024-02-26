@@ -1,1 +1,1 @@
-7-segment display in SVG
+7-segment SVG display

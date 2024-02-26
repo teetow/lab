@@ -1,0 +1,17 @@
+.temp {
+
+  display: grid;
+  grid-template-areas: "main"
+}
+
+.temp>* {
+  grid-area: main;
+}
+
+.temp>img {
+  height: 536px;
+  object-fit: contain;
+  object-position: 4px 50px;
+  opacity: 0.5;
+  width: 483px;
+}

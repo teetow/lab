@@ -1,0 +1,128 @@
+.gamepad {
+  width: 500px;
+  height: 500px;
+}
+
+.gp__symbol {
+  --stroke: #eee;
+  --fill: #222;
+  transition: fill 240ms linear;
+}
+
+.gp__symbol.is-active {
+  --fill: #eee;
+  transition: fill 20ms linear;
+}
+
+g,
+.gp__glyph {
+  transition: inherit;
+  fill: var(--fill);
+  stroke: var(--stroke);
+}
+
+.gp__glyph--outline {
+  fill: none;
+}
+
+.gp__stick {
+  --swing: 4px;
+}
+
+.gp__glyph--fill {
+  transform: translate(calc(var(--x) * var(--swing)),
+      calc(var(--y) * var(--swing)));
+}
+
+.gp__shell {
+  x: 0;
+  y: 0;
+}
+
+.gp__dpad {
+  x: 45;
+  y: 42;
+}
+
+.gp__arrow {
+  --stroke: none;
+}
+
+.gp__arrow--up {
+  x: 56;
+  y: 43;
+}
+
+.gp__arrow--right {
+  transform: rotate(90deg);
+  x: 53;
+  y: -71;
+}
+
+.gp__arrow--down {
+  transform: rotate(180deg);
+  x: -62;
+  y: -68;
+}
+
+.gp__arrow--left {
+  transform: rotate(270deg);
+  x: -59;
+  y: 47;
+}
+
+.gp__stick--left {
+  x: 27;
+  y: 22;
+}
+
+.gp__stick--right {
+  x: 95;
+  y: 48;
+}
+
+.gp__button-a {
+  x: 121;
+  y: 36;
+}
+
+.gp__button-b {
+  x: 133;
+  y: 24;
+}
+
+.gp__button-x {
+  x: 110;
+  y: 24;
+}
+
+.gp__button-y {
+  x: 121;
+  y: 13;
+}
+
+.gp__rearbutton-l {
+  x: 20;
+  y: -2;
+}
+
+.gp__rearbutton-r {
+  scale: -1 1;
+  x: -142;
+  y: -2;
+}
+
+.gp__trigger {
+  translate: 0 calc(var(--value) * 3px);
+}
+
+.gp__trigger-l {
+  x: 24;
+  y: -7;
+}
+
+.gp__trigger-r {
+  scale: -1 1;
+  x: -138;
+  y: -7;
+}

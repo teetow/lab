@@ -5,8 +5,6 @@ import "./index.scss";
 import Cover from "./pages/Cover";
 import Project, { PageDef } from "./pages/Project";
 
-const projectRoot = "./projects/";
-
 const projects = import.meta.glob<React.FC>([`./projects/**/index.tsx`], {
   eager: true,
   import: "default",
@@ -22,36 +20,28 @@ const descs = import.meta.glob<string>([`./projects/**/desc.md`], {
   import: "markdown",
 });
 
-const thumbs = import.meta.glob<string>([`./projects/**/thumb.png`], {
+const thumbs = import.meta.glob<string>([`./projects/**/thumb.svg`], {
   eager: true,
   import: "default",
 });
 
-console.log(projects);
+const previews = import.meta.glob<React.FC>([`./projects/**/Preview.tsx`], {
+  eager: true,
+  import: "default",
+});
+
+function getImport<T>(component: string, collection: Record<string, T>) {
+  const base = component.replace("index.tsx", "");
+
+  const fileKey = Object.keys(collection).find((key) => key.includes(base));
+
+  if (fileKey) {
+    return fileKey in collection ? collection[fileKey] : undefined;
+  }
+}
 
 const mekTitle = (path: string) =>
-  path.split(projectRoot)[1].replace("index.tsx", "").replace(/\/+$/, "");
-
-const getDescFor = (file: string) => {
-  const descFile = file.split("/index.tsx")[0] + "/desc.md";
-  if (descFile in descs) {
-    return descs[descFile];
-  }
-};
-
-const getDocsFor = (file: string) => {
-  const docsFile = file.split("/index.tsx")[0] + "/docs.md";
-  if (docsFile in docs) {
-    return docs[docsFile];
-  }
-};
-
-const getThumbFor = (file: string) => {
-  const thumbFile = file.split("/index.tsx")[0] + "/thumb.png";
-  if (thumbFile in thumbs) {
-    return thumbs[thumbFile];
-  }
-};
+  path.split("./projects/")[1].replace("index.tsx", "").replace(/\/+$/, "");
 
 const pages = Object.entries(projects).map(
   ([file, Component]): PageDef => ({
@@ -61,10 +51,11 @@ const pages = Object.entries(projects).map(
     path: mekTitle(file)
       .toLocaleLowerCase()
       .replace(/[^a-zA-Z]/, "-"),
-    component: Component,
-    desc: getDescFor(file),
-    docs: getDocsFor(file),
-    thumb: getThumbFor(file),
+    Component: Component,
+    Preview: getImport(file, previews),
+    desc: getImport(file, descs),
+    thumb: getImport(file, thumbs),
+    docs: getImport(file, docs),
   })
 );
 

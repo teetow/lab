@@ -1,17 +1,19 @@
 import Markdown from "react-markdown";
+import { Link } from "react-router-dom";
 import rehypeHighlight from "rehype-highlight";
 import "../style/lang/a11y-dark.scss";
 import "./Project.scss";
 
 export type PageDef = {
-  component: React.FC;
+  Component: React.FC;
   file: string;
   name: string;
   path: string;
   pathname: string;
   desc?: string;
-  docs?: string;
   thumb?: string;
+  docs?: string;
+  Preview?: React.FC;
 };
 
 type Props = {
@@ -19,16 +21,18 @@ type Props = {
 };
 
 const Project = ({ page }: Props) => {
+  const { docs, Preview, Component } = page;
   return (
     <div className="project">
-      <div className="component">
-        <page.component />
-      </div>
-      <div className="desc">
-        <Markdown rehypePlugins={[rehypeHighlight]} className="markdown">
-          {page.docs}
-        </Markdown>
-      </div>
+      <Link to="/lab">Back</Link>
+      <div className="component">{Preview ? <Preview /> : <Component />}</div>
+      {docs && (
+        <div className="desc">
+          <Markdown rehypePlugins={[rehypeHighlight]} className="markdown">
+            {docs}
+          </Markdown>
+        </div>
+      )}
     </div>
   );
 };

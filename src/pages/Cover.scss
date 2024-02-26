@@ -1,72 +1,89 @@
 @use "../style/theme";
 
 .cover {
-  align-items: center;
-  justify-items: center;
   column-gap: 0.5rem;
   row-gap: 2rem;
-  grid-template-columns: auto auto 1fr;
+  grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
-    "logo summary header menu"
-    "main main main main"
-    "footer footer footer footer";
+    "header"
+    "main"
+    "footer";
+
+  .header {
+  }
+
+  .cards {
+    align-content: start;
+    display: grid;
+    gap: 1rem;
+    grid-area: main;
+    grid-template-columns: repeat(auto-fit, minmax(128px, 25%));
+    justify-content: center;
+  }
+
+  .summary {
+    grid-area: footer;
+  }
 }
 
-.logo {
-  width: 5rem;
-}
-
-.summary {
-  justify-self: end;
+.header {
+  align-items: center;
   display: grid;
-  justify-items: end;
-}
+  grid-template-columns: auto 1fr auto;
 
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-  gap: 1rem;
-  grid-area: main;
+  .logo {
+    width: 5rem;
+  }
+
+  .title {
+  }
+
+  .curio {
+    justify-self: end;
+    justify-items: end;
+  }
 }
 
 .covercard {
-  min-width: 0;
   align-items: center;
-  aspect-ratio: 1;
-  background-color: #fff1;
+  aspect-ratio: calc(3 / 4);
+  background-color: #ccd1;
   border-radius: 2px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.01);
   display: grid;
-  gap: 0.25rem;
-  grid-template-areas: "thumb" "desc";
+  grid-template-areas: "thumb" "details";
   grid-template-columns: 1fr;
   grid-template-rows: 4fr 1fr;
   justify-items: center;
+  min-width: 0;
   padding: 0.25rem;
   transition: background-color 80ms;
 
   &:hover {
     transition: background-color 30ms;
-    background-color: color-mix(in srgb, currentcolor 10%, #fff 10%);
+    background-color: color-mix(in srgb, currentcolor 2%, #fff 7%);
     box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.16);
   }
-}
 
-.covercard .thumb {
-  grid-area: thumb;
-  width: 100%;
-}
+  .details {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    grid-area: details;
+    padding: 0.5rem;
+  }
 
-.covercard .title {
-  align-self: end;
-  grid-area: thumb;
-  margin: 2rem 0.5rem;
-  position: absolute;
-}
+  .thumb {
+    width: 100%;
+  }
 
-.covercard .desc {
-  color: color-mix(in lab, #{theme.$color-brand-600} 25%, #fff 50%);
-  grid-area: desc;
-  align-self: end;
+  .title {
+    grid-area: thumb;
+  }
+
+  .desc {
+    font-size: 0.8em;
+    color: color-mix(in lab, #{theme.$color-brand-600} 25%, #fff 50%);
+  }
 }
