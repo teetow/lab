@@ -1,0 +1,30 @@
+$fg: #a5a5ff;
+$bg: #4242e7;
+
+.c64screen {
+  background-color: $fg;
+  display: grid;
+  grid-template-areas: "main";
+  padding: 3rem 2rem;
+  place-items: center;
+  transition: filter 0.2s ease-in-out;
+
+  &:focus {
+    border: none;
+    outline: none;
+  }
+  &:not(:focus) {
+    filter: grayscale(100%);
+  }
+}
+
+.terminal {
+  background-color: $bg;
+  color: $fg;
+  line-height: 0;
+  max-width: 640px;
+
+  use {
+    fill: currentColor;
+  }
+}

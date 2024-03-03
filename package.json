@@ -11,9 +11,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/he": "^1.2.3",
     "@types/react-syntax-highlighter": "^15.5.11",
     "bun-types": "^1.0.28",
     "classix": "^2.1.36",
+    "he": "^1.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-markdown": "^9.0.1",
