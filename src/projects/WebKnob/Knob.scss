@@ -1,0 +1,53 @@
+knob-element {
+  user-select: none;
+
+  &::part(root) {
+    --color: rgb(0, 183, 255);
+    align-items: center;
+    aspect-ratio: 1;
+    display: grid;
+    grid-template-areas: "main";
+    height: calc(var(--sz) * 1px);
+  }
+  &::part(surface) {
+    aspect-ratio: 1;
+    background-color: #fff1;
+    cursor: pointer;
+    display: block;
+    display: block;
+    grid-area: main;
+    width: calc(var(--sz) * 1px);
+  }
+
+  &::part(perimeter) {
+    cx: 50%;
+    cy: 50%;
+    r: calc(var(--sz) * 0.5);
+    fill: #fff2;
+  }
+
+  &::part(indicatorgroup) {
+    --inset: 4;
+    --circ: calc(3.1416 * (var(--sz) - var(--inset)));
+    stroke-dasharray: var(--circ) var(--circ);
+    stroke-dashoffset: calc(var(--circ) * (1 - (var(--value))));
+    stroke: var(--color);
+    stroke-width: var(--inset);
+    fill: #fff3;
+    transform: rotate(90deg);
+    transform-origin: center;
+  }
+
+  &::part(indicator) {
+    cx: 50%;
+    cy: 50%;
+    r: calc((var(--sz) - var((--inset))) * 0.5);
+  }
+
+  &::part(readout) {
+    grid-area: main;
+    fill: var(--color);
+    text-align: center;
+    font: bold 1em sans-serif;
+  }
+}
